@@ -3,6 +3,7 @@ import DetailedNews from '../DetailedNewsComp/index'
 import Navbar from '../Navbar'
 import {BrowserRouter , Routes , Route} from 'react-router-dom'
 import {SearchAndCategoryContextProvider} from '../SearchCategoryContext/index'
+import SavedRoute from '../SavedRoute/index'
 import './index.css'
 
 
@@ -14,7 +15,7 @@ function OverAllApplication() {
     <Navbar/>
     <Routes>
         <Route path = "/" element = {<HomeNews/>} />
-        <Route path = "/saved" element = {<DetailedNews/>} />
+        <Route path = "/saved" element = {<SavedRoute/>} />
     </Routes>
     </SearchAndCategoryContextProvider>
     </BrowserRouter>

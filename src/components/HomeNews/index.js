@@ -2,6 +2,7 @@ import './index.css';
 import { useState, useContext, useEffect, useMemo } from 'react';
 import EachNewsCard from '../EachNewsCard/index'
 import { SearchAndCategoryContext } from '../SearchCategoryContext/index';
+import ReactLoading from 'react-loading';
 import { v4 as uuidv4 } from 'uuid';
 
 function HomeNews() {
@@ -9,37 +10,26 @@ function HomeNews() {
     const { searchValue, category } = inputCategoryChangeContext;
     const [newsList, setNewsList] = useState([]);
     const [error, setError] = useState(null);
+    const [isLoading , setIsLoading] = useState("true");
 
     useEffect(() => {
         const fetchNewsData = async () => {
+            setIsLoading("true");
             try {
                 const url = `https://api.thenewsapi.com/v1/news/all?api_token=pmwVWa8BYqoyIJKq3Mg0efLRqbAPO0L80Mi3dmzP&language=en&category=technology`;
                 // const url = `https://deploydemoxyz.vercel.app/user/`;
                 const fetchingPromise = await fetch(url);
 
-                if (!fetchingPromise.ok) {
-                    throw new Error(`HTTP error! Status: ${fetchingPromise.status}`);
-                }
 
                 const actualNewsData = await fetchingPromise.json();
                 console.log(actualNewsData.data);
-
-                // if (!actualNewsData.articles) {
-                //     throw new Error('No articles found in the response');
-                // }
-
-                // const listOfArticles = actualNewsData.articles;
-
-                // const articlesWithId = listOfArticles.map(article => ({
-                //     id: uuidv4(),
-                //     ...article,
-                // }));
 
                 setNewsList(actualNewsData.data);
             } catch (err) {
                 console.error('Failed to fetch news data:', err);
                 setError(err.message);
             }
+            setIsLoading("false");
         };
         fetchNewsData();
     }, [searchValue, category]);
@@ -52,9 +42,9 @@ function HomeNews() {
     //     return filteredList;
     // }, [newsList]);
 
-    return (
-        <div className="HomeNewsContainer">
-            <h1>This is Home news container</h1>
+    
+    const successfullUi = ()=> (
+        <>
             {error ? (
                 <p className="error">{error}</p>
             ) : (
@@ -64,6 +54,22 @@ function HomeNews() {
                     ))}
                 </ul>
             )}
+        </>
+    )
+
+    const renderBasedOnLoading = ()=> {
+        switch(isLoading) {
+            case 'true' :
+                return <div className = "loadingContainer"><ReactLoading type={'spin'} color={'blue'} height={'50px'} width={'50px'} /></div>;
+            case 'false' :
+                return successfullUi();
+        }
+    }
+
+    return (
+        <div className="HomeNewsContainer">
+            <h1>This is Home news container</h1>
+            {renderBasedOnLoading()}
         </div>
     );
 }
