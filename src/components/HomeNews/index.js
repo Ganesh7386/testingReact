@@ -2,7 +2,7 @@ import './index.css'
 import {useState,useContext, useEffect , useMemo} from 'react';
 // import EachNewsCard from '../EachNewsCard/index'
 import {SearchAndCategoryContext} from '../SearchCategoryContext/index'
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 function HomeNews() {
     const inputCategoryChangeContext = useContext(SearchAndCategoryContext)
@@ -19,22 +19,22 @@ function HomeNews() {
         fetchNewsData();
     } , [searchValue , category])
 
-    const filterNullData = useMemo(()=> {
-        const filteredList = newsList.filter((eachNews)=>(eachNews.content !== null || eachNews.description !== null));
-        const filtered1 = newsList.map((eachNews)=>({newsId : uuidv4() , ...eachNews}))
-        console.log(filtered1);
+    // const filterNullData = useMemo(()=> {
+    //     const filteredList = newsList.filter((eachNews)=>(eachNews.content !== null || eachNews.description !== null));
+    //     const filtered1 = newsList.map((eachNews)=>({newsId : uuidv4() , ...eachNews}))
+    //     console.log(filtered1);
         
-        // console.log(filteredList);
-    },[newsList])
+    //     // console.log(filteredList);
+    // },[newsList])
 
     return (
     <div className = "HomeNewsContainer">
         <h1>This is Home news container</h1>
-        <ul className = "newsArticlesUlContainer">
+        {/* <ul className = "newsArticlesUlContainer">
             {
                 newsList.map((eachNewsobj)=>(<li key = {eachNewsobj.newsId}>{eachNewsobj.author}</li>))
             }
-        </ul>
+        </ul> */}
     </div>
     )
 }
