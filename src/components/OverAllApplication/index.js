@@ -3,18 +3,18 @@ import DetailedNews from '../DetailedNewsComp/index'
 import Navbar from '../Navbar'
 import {BrowserRouter , Routes , Route} from 'react-router-dom'
 import {SearchAndCategoryContextProvider} from '../SearchCategoryContext/index'
-
+import './index.css'
 
 
 function OverAllApplication() {
     return (
-    <div>
+    <div className = "overAllApplicationContainer">
     <BrowserRouter>
     <SearchAndCategoryContextProvider>
     <Navbar/>
     <Routes>
         <Route path = "/" element = {<HomeNews/>} />
-        <Route path = "/news" element = {<DetailedNews/>} />
+        <Route path = "/saved" element = {<DetailedNews/>} />
     </Routes>
     </SearchAndCategoryContextProvider>
     </BrowserRouter>

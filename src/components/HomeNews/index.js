@@ -13,7 +13,7 @@ function HomeNews() {
     useEffect(() => {
         const fetchNewsData = async () => {
             try {
-                const url = `https://api.worldnewsapi.com/search-news?api-key=368ba5f1d25441f4b5ba8aed22051836&language=en&text=elon+OR+musk`;
+                const url = `https://api.thenewsapi.com/v1/news/all?api_token=pmwVWa8BYqoyIJKq3Mg0efLRqbAPO0L80Mi3dmzP&language=en&category=technology`;
                 // const url = `https://deploydemoxyz.vercel.app/user/`;
                 const fetchingPromise = await fetch(url);
 
@@ -22,7 +22,7 @@ function HomeNews() {
                 }
 
                 const actualNewsData = await fetchingPromise.json();
-                console.log(actualNewsData.news);
+                console.log(actualNewsData.data);
 
                 // if (!actualNewsData.articles) {
                 //     throw new Error('No articles found in the response');
@@ -35,7 +35,7 @@ function HomeNews() {
                 //     ...article,
                 // }));
 
-                setNewsList(actualNewsData.news);
+                setNewsList(actualNewsData.data);
             } catch (err) {
                 console.error('Failed to fetch news data:', err);
                 setError(err.message);
@@ -60,7 +60,7 @@ function HomeNews() {
             ) : (
                 <ul className="newsArticlesUlContainer">
                     {newsList.map(eachNewsobj => (
-                        <EachNewsCard key = {eachNewsobj.id} eachNewsDetailsObj = {eachNewsobj} />
+                        <EachNewsCard key = {eachNewsobj.uuid} eachNewsDetailsObj = {eachNewsobj} />
                     ))}
                 </ul>
             )}

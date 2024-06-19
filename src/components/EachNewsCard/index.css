@@ -4,6 +4,7 @@
     margin-bottom: 10px;
     min-height : 250px;
     background-color: #242526;
+    color : white;
 }
 
 .innerContainer {
@@ -74,8 +75,14 @@
     }
 }
 
-@media screen and (min-width : 769px) {
+@media screen and (min-width : 769px) and (max-width : 1200px) {
     .eachNewsCardContainer {
         width : 30%;
+    }
+}
+
+@media screen and (min-width : 1200px) {
+    .eachNewsCardContainer {
+        width : 22%;
     }
 }

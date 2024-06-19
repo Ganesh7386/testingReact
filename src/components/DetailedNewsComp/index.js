@@ -6,7 +6,7 @@ const DetailedNews = ()=> {
     const location = useLocation();
     console.log(location);
     
-    return (<h1>This is detailed news component</h1>)
+    return (<h1>This is saved items page</h1>)
 
 }
 export default DetailedNews;
