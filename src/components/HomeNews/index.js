@@ -12,7 +12,7 @@ function HomeNews() {
     useEffect(() => {
         const fetchNewsData = async () => {
             try {
-                const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=69abcad3b3794c36bde8b80de589167b`;
+                const url = `https://newsdata.io/api/1/latest?apikey=pub_46799efe61ae689a6306f1dd9ac70b0f7a2dc&q=pizza&category=${category}`;
                 // const url = `https://deploydemoxyz.vercel.app/user/`;
                 const fetchingPromise = await fetch(url);
 
@@ -21,20 +21,20 @@ function HomeNews() {
                 }
 
                 const actualNewsData = await fetchingPromise.json();
-                console.log(actualNewsData);
+                console.log(actualNewsData.results);
 
                 // if (!actualNewsData.articles) {
                 //     throw new Error('No articles found in the response');
                 // }
 
-                const listOfArticles = actualNewsData.articles;
+                // const listOfArticles = actualNewsData.articles;
 
-                const articlesWithId = listOfArticles.map(article => ({
-                    id: uuidv4(),
-                    ...article,
-                }));
+                // const articlesWithId = listOfArticles.map(article => ({
+                //     id: uuidv4(),
+                //     ...article,
+                // }));
 
-                setNewsList(articlesWithId);
+                setNewsList(actualNewsData.results);
             } catch (err) {
                 console.error('Failed to fetch news data:', err);
                 setError(err.message);
@@ -43,13 +43,13 @@ function HomeNews() {
         fetchNewsData();
     }, [searchValue, category]);
 
-    const filteredNewsList = useMemo(() => {
-        const filteredList = newsList.filter(
-            eachNews => eachNews.content !== null || eachNews.description !== null
-        );
-        console.log(filteredList);
-        return filteredList;
-    }, [newsList]);
+    // const filteredNewsList = useMemo(() => {
+    //     const filteredList = newsList.filter(
+    //         eachNews => eachNews.content !== null || eachNews.description !== null
+    //     );
+    //     console.log(filteredList);
+    //     return filteredList;
+    // }, [newsList]);
 
     return (
         <div className="HomeNewsContainer">
@@ -58,8 +58,8 @@ function HomeNews() {
                 <p className="error">{error}</p>
             ) : (
                 <ul className="newsArticlesUlContainer">
-                    {filteredNewsList.map(eachNewsobj => (
-                        <li key={eachNewsobj.id}>{eachNewsobj.author || 'Unknown Author'}</li>
+                    {newsList.map(eachNewsobj => (
+                        <li key={eachNewsobj.article_id}>{eachNewsobj.title}</li>
                     ))}
                 </ul>
             )}
