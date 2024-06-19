@@ -1,5 +1,6 @@
 import './index.css';
 import { useState, useContext, useEffect, useMemo } from 'react';
+import EachNewsCard from '../EachNewsCard/index'
 import { SearchAndCategoryContext } from '../SearchCategoryContext/index';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -59,7 +60,7 @@ function HomeNews() {
             ) : (
                 <ul className="newsArticlesUlContainer">
                     {newsList.map(eachNewsobj => (
-                        <li key={eachNewsobj.article_id}>{eachNewsobj.title}</li>
+                        <EachNewsCard key = {eachNewsobj.article_id} eachNewsDetailsObj = {eachNewsobj} />
                     ))}
                 </ul>
             )}

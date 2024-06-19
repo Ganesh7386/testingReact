@@ -14,7 +14,7 @@ function OverAllApplication() {
     <Navbar/>
     <Routes>
         <Route path = "/" element = {<HomeNews/>} />
-        <Route path = "/detailednews" element = {<DetailedNews/>} />
+        <Route path = "/news" element = {<DetailedNews/>} />
     </Routes>
     </SearchAndCategoryContextProvider>
     </BrowserRouter>
