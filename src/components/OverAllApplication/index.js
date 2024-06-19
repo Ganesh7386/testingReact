@@ -17,7 +17,6 @@ function OverAllApplication() {
         <Route path = "/detailednews" element = {<DetailedNews/>} />
     </Routes>
     </SearchAndCategoryContextProvider>
-    
     </BrowserRouter>
     
     </div>)
