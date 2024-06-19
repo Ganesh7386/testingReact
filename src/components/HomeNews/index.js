@@ -30,11 +30,11 @@ function HomeNews() {
     return (
     <div className = "HomeNewsContainer">
         <h1>This is Home news container</h1>
-        <ul className = "newsArticlesUlContainer">
+        {/* <ul className = "newsArticlesUlContainer">
             {
                 newsList.map((eachNewsobj)=>(<li key = {eachNewsobj.newsId}>{eachNewsobj.author}</li>))
             }
-        </ul>
+        </ul> */}
     </div>
     )
 }
