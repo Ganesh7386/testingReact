@@ -6,15 +6,14 @@ import { v4 as uuidv4 } from 'uuid';
 function HomeNews() {
     const inputCategoryChangeContext = useContext(SearchAndCategoryContext);
     const { searchValue, category } = inputCategoryChangeContext;
-    // const [newsList, setNewsList] = useState([]);
+    const [newsList, setNewsList] = useState([]);
     const [error, setError] = useState(null);
-    const [data , setData] = useState({})
 
     useEffect(() => {
         const fetchNewsData = async () => {
             try {
-                // const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=69abcad3b3794c36bde8b80de589167b`;
-                const url = `https://deploydemoxyz.vercel.app/user/`;
+                const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=69abcad3b3794c36bde8b80de589167b`;
+                // const url = `https://deploydemoxyz.vercel.app/user/`;
                 const fetchingPromise = await fetch(url);
 
                 if (!fetchingPromise.ok) {
@@ -23,20 +22,19 @@ function HomeNews() {
 
                 const actualNewsData = await fetchingPromise.json();
                 console.log(actualNewsData);
-                setData(actualNewsData.data);
 
                 // if (!actualNewsData.articles) {
                 //     throw new Error('No articles found in the response');
                 // }
 
-                // const listOfArticles = actualNewsData.articles;
+                const listOfArticles = actualNewsData.articles;
 
-                // const articlesWithId = listOfArticles.map(article => ({
-                //     id: uuidv4(),
-                //     ...article,
-                // }));
+                const articlesWithId = listOfArticles.map(article => ({
+                    id: uuidv4(),
+                    ...article,
+                }));
 
-                // setNewsList(articlesWithId);
+                setNewsList(articlesWithId);
             } catch (err) {
                 console.error('Failed to fetch news data:', err);
                 setError(err.message);
@@ -45,13 +43,13 @@ function HomeNews() {
         fetchNewsData();
     }, [searchValue, category]);
 
-    // const filteredNewsList = useMemo(() => {
-    //     const filteredList = newsList.filter(
-    //         eachNews => eachNews.content !== null || eachNews.description !== null
-    //     );
-    //     console.log(filteredList);
-    //     return filteredList;
-    // }, [newsList]);
+    const filteredNewsList = useMemo(() => {
+        const filteredList = newsList.filter(
+            eachNews => eachNews.content !== null || eachNews.description !== null
+        );
+        console.log(filteredList);
+        return filteredList;
+    }, [newsList]);
 
     return (
         <div className="HomeNewsContainer">
@@ -59,7 +57,11 @@ function HomeNews() {
             {error ? (
                 <p className="error">{error}</p>
             ) : (
-                <p>{data.name}</p>
+                <ul className="newsArticlesUlContainer">
+                    {filteredNewsList.map(eachNewsobj => (
+                        <li key={eachNewsobj.id}>{eachNewsobj.author || 'Unknown Author'}</li>
+                    ))}
+                </ul>
             )}
         </div>
     );
