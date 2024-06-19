@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 function EachNewsCard({eachNewsDetailsObj}) {
 
-    const {title , description , creator} = eachNewsDetailsObj;
+    const {title  , author} = eachNewsDetailsObj;
     // const searchAndCategoryContext = useContext(SearchAndCategoryContext)
     // const {addItemToSaveList} = searchAndCategoryContext;
 
@@ -28,10 +28,10 @@ function EachNewsCard({eachNewsDetailsObj}) {
         <li className = "eachNewsCardContainer">
         <div className = "innerContainer">
             <div className = "authorNameContainer">
-                <p>{creator[0] === null ? "no author" : creator[0]}</p>
+                <p>{author === null ? "no author" : author}</p>
             </div>
             <div className = "contentContainer">
-                <p>{`${description === null ? 'Content unavailable' : description}`}</p>
+                <p>{`${title === null ? 'Content unavailable' : title}`}</p>
             </div>
             <div className = "cardOptionsContainer">
                 <button onClick = {handleSavingItem} className = "saveBtn" type = "button">Save</button>
