@@ -1,10 +1,20 @@
 import Home from '../Home/index'
 import DetailedNews from '../DetailedNews/index'
+import {BrowserRouter , Routes , Route} from 'react-router-dom'
 
 
 
 function OverAllApplication() {
-    return (<h1>This is overAll application</h1>)
+    return (
+    <div>
+    <BrowserRouter>
+    <Routes>
+        <Route path = "/" element = {<Home/>} />
+        <Route path = "/detailednews" element = {<DetailedNews/>} />
+    </Routes>
+    </BrowserRouter>
+    
+    </div>)
 }
 
 export default OverAllApplication;
