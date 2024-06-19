@@ -11,7 +11,8 @@ function HomeNews() {
 
     useEffect(()=> {    
         const fetchNewsData = async ()=> {
-            const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=69abcad3b3794c36bde8b80de589167b`;
+            // const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=69abcad3b3794c36bde8b80de589167b`;
+            const url = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=69abcad3b3794c36bde8b80de589167b`;
             const fetchingPromise = await fetch(url);
             const actualNewsData = await fetchingPromise.json();
             const listOfArticles = actualNewsData.articles;
