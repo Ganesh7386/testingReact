@@ -17,6 +17,7 @@ function Navbar() {
         <div className = "linksContainer">
         <Link className = "navbarLinks" to = "/">Home</Link>
         <Link className='navbarLinks' to = "/saved">Saved</Link>
+        <Link className='navbarLinks' to = "/detailednews">Saved</Link>
         </div>
         <ul className = "navbarOptionsContainer">
         <li><button onClick = {()=>{setShowInput(!showInput);setShowCategories(false)}} type = "button">search</button></li>

@@ -1,4 +1,4 @@
-import Home from '../HomeNews/index'
+import HomeNews from '../HomeNews/index'
 import DetailedNews from '../DetailedNewsComp/index'
 import Navbar from '../Navbar'
 import {BrowserRouter , Routes , Route} from 'react-router-dom'
@@ -13,7 +13,7 @@ function OverAllApplication() {
     <SearchAndCategoryContextProvider>
     <Navbar/>
     <Routes>
-        <Route path = "/" element = {<Home/>} />
+        <Route path = "/" element = {<HomeNews/>} />
         <Route path = "/detailednews" element = {<DetailedNews/>} />
     </Routes>
     </SearchAndCategoryContextProvider>
